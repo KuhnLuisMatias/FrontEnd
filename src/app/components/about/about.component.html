@@ -1,0 +1,153 @@
+<section class="resume-section p-3 p-lg-5 d-flex d-column" id="about">
+  <div class="my-auto" *ngIf="rol == 'ROLE_ADMIN' || rol == 'ROLE_USER'">
+    <div class="about2" id="main-about">
+      <div *ngFor="let person of persons">
+        <h1 class="mb-0" id="ingreso">
+          {{ person.apellido }}
+          <span class="text-primary">{{ person.nombre }}</span>
+        </h1>
+
+        <div class="subheading mb-5">
+          {{ person.ciudad }} · {{ person.celular }} ·  {{ person.email }}
+        </div>
+        <p class="mb-5">
+          {{ person.descripcion }}
+        </p>
+        <div class="float-left btn-group" *ngIf="isAdmin" id="botones">
+          <a
+            (click)="onOpenModal(person, 'edit')"
+            class="btn btn-success tooltips"
+            data-placement="top"
+            data-original-title="Edit"
+            style="color: white"
+            >Editar</a
+          >
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- About -->
+</section>
+
+<!-- Edit About -->
+<div
+  class="modal fade"
+  id="editAboutModal"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="aboutEditModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <b>Acerca de mí</b>
+        <button
+          type="button"
+          class="close"
+          data-dismiss="modal"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form #editForm="ngForm">
+          <div class="form-group">
+            <label for="nombre"><b>Nombre:</b></label>
+            <input
+              type="hidden"
+              ngModel="{{ editPerson?.id }}"
+              name="id"
+              class="form-control"
+              id="id"
+            />
+            <input
+              type="text"
+              ngModel="{{ editPerson?.nombre }}"
+              name="nombre"
+              class="form-control"
+              id="nombre"
+              placeholder="Ingresa tu nombre"
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="descripcion"> <b>Apellido:</b></label>
+            <input
+              type="text"
+              ngModel="{{ editPerson?.apellido }}"
+              name="apellido"
+              class="form-control"
+              id="apellido"
+              name="apellido"
+              placeholder="Apellido"
+            />
+          </div>
+          <div class="form-group">
+            <label for="descripcion"><b>Descripción</b></label>
+            <input
+              type="text"
+              ngModel="{{ editPerson?.descripcion }}"
+              name="descripcion"
+              class="form-control"
+              id="descripcion"
+              aria-describedby="emailHelp"
+              placeholder="Descripción"
+            />
+          </div>
+          <div class="form-group">
+            <label for="ciudad"><b>Ciudad:</b></label>
+            <input
+              type="text"
+              ngModel="{{ editPerson?.ciudad }}"
+              name="ciudad"
+              class="form-control"
+              id="ciudad"
+              placeholder="Ciudad"
+            />
+          </div>
+          <div class="form-group">
+            <label for="ciudad"><b>Correo Electrónico:</b></label>
+            <input
+              type="email"
+              ngModel="{{ editPerson?.email }}"
+              name="email"
+              class="form-control"
+              id="email"
+              placeholder="Email"
+            />
+          </div>
+          <div class="form-group">
+            <label for="celular"><b>Celular:</b></label>
+            <input
+              type="text"
+              ngModel="{{ editPerson?.celular }}"
+              name="celular"
+              class="form-control"
+              id="celular"
+              placeholder="Celular"
+            />
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button "
+              id="add-educacion-form "
+              data-dismiss="modal"
+              class="btn btn-secondary"
+            >
+              Cerrar
+            </button>
+            <button
+              (click)="onUpdateAbout(editForm.value)"
+              data-dismiss="modal"
+              class="btn btn-primary"
+            >
+              Guardar
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

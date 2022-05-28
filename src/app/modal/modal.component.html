@@ -1,0 +1,66 @@
+<div class="text-center" *ngIf="isLogged; else loggedOut"></div>
+
+<ng-template #loggedOut>
+  <div class="m-4">
+    <div id="myModal" class="modal fade" tabindex="-1">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="container">
+            <input type="checkbox" id="flip" />
+            <div class="cover">
+              <div class="front">
+                <img src="assets/img/frontImg.jpg" alt="" />
+                <div class="text">
+                  <span class="text-1">Argentina Programa <br /></span>
+                  <span class="text-2">Porfolio</span>
+                </div>
+              </div>
+            </div>
+            <div class="forms">
+              <div class="form-content">
+                <div class="login-form">
+                  <div class="title">Proyecto Final</div>
+                  <br/>
+                  <div class="modal-body">
+                    <form #f="ngForm" (ngSubmit)="onLogin()" novalidate>
+                      <div class="form-group">
+                        <input
+                          type="text"
+                          name="nombreUsuario"
+                          id="nombreUsuario"
+                          class="form-control"
+                          placeholder="Usuario"
+                          [(ngModel)]="nombreUsuario"
+                          required
+                        />
+                      </div>
+                      <div class="form-group">
+                        <input
+                          type="password"
+                          name="password"
+                          id="password"
+                          class="form-control"
+                          placeholder="Contraseña"
+                          [(ngModel)]="password"
+                          required
+                        />
+                      </div>
+                      <div class="form-group">
+                        <button
+                          class="btn btn-outline-success btn-block"
+                          [disabled]="!f.valid"
+                        >
+                          <i class="fas fa-sign-in-alt"></i> Iniciar Sesión
+                        </button>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-template>

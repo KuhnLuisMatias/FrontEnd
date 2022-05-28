@@ -1,0 +1,26 @@
+/* You can add global styles to this file, and also import other style files */
+
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+}
+
+.arg-logo{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+.arg-logo h5{
+  font-family: "Saira Extra Condensed", serif;
+  font-weight: 500;
+  text-transform: uppercase;
+  color: #343a40;
+  transform: translate(10%, -100%);
+  color: white;
+  font-style: normal;
+  font-weight: 0;  
+}
